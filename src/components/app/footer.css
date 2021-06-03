@@ -1,0 +1,11 @@
+.footer-container {
+  margin-top: 2%;
+  padding: 2%;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 3px;
+  border-top: 10px solid pink;
+}
+a {
+  padding: 10px;
+}
