@@ -6,6 +6,7 @@ const MoviesContext = React.createContext();
 
 const initialMoviesState = {
   data: [],
+  bookmarked: [],
   status: STATUS.IDLE,
   year: 2021
 }
@@ -54,9 +55,11 @@ function MoviesProvider({ ...props}) {
           }
         }
         case ACTIONS.TOGGLE_BOOKMARK: {
+          let data = updateData(state.data, action.payload)
           return {
             ...state,
-            data : updateData(state.data, action.payload)
+            data,
+            bookmarked: [...state.bookmarked, ...data.filter(({bookmarked}) => bookmarked === true)]
           }
         }
 

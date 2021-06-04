@@ -4,8 +4,7 @@ import { useMovies } from "../../context/movies";
 
 const Bookmarked = () => {
   const [state,] = useMovies();
-  const { data } = state;
-  const bookmarked = data.filter(({bookmarked}) => bookmarked === true);
+  const { bookmarked } = state;
   const isEmpty = !bookmarked || !bookmarked.length;
   return (
     <div className="bookmark-list">
