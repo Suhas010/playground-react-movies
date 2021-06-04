@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as React from 'react';
 import { ACTIONS, COLORS, STATUS } from '../utils/constants';
 import { getRandomArbitrary } from '../utils/helper';
@@ -17,7 +18,7 @@ const updateData = ({data, bookmarked}, {title,checked}) => {
     if(item.Title === title) {
       item.bookmarked = checked;
       if(checked) {
-        copyOfBookmarked.push(item);
+        copyOfBookmarked.push({...item, time: moment()});
       } else {
         copyOfBookmarked.splice(copyOfBookmarked.findIndex(({Title}) => Title === title),1)
       }

@@ -12,6 +12,10 @@
   font-weight: 600;
   color: #495050d1;
 }
+.time{
+  padding-top: 35px;
+  color: #555e67;
+}
 .ratings {
   margin-right: 30px;
 }

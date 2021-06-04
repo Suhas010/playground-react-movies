@@ -1,3 +1,4 @@
+import moment from "moment";
 import Info from "../../common/Info";
 import MovieDetails from "../../common/MovieDetails";
 import { useMovies } from "../../context/movies";
@@ -17,13 +18,14 @@ const Bookmarked = () => {
             message={`You have not added any movie to bookmarks.`}
           />
         )}
-        {bookmarked.map(({Year, Title, rating, color}) => (
+        {bookmarked.map(({Year, Title, rating, color, time}) => (
           <div className="movie" style={{backgroundColor: color}} key={Title}>
             <MovieDetails 
               title={Title}
               year={Year}
               rating={rating}
             />
+            <div className="time">{moment(time).fromNow()}</div>
           </div>
         ))}
       </div>  
