@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import '~antd/dist/antd.css';
 
 * {
   box-sizing: border-box;
 }
 
 :root {
-  --button-color: #ff9f9f;
+  --background-color: whitesmoke;
 }
 body {
   margin: 0;
@@ -15,27 +16,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-button {
-  padding: 10px;
-  background-color: var(--button-color);
-  border: 1px solid;
-  width: 100%;
-  color: black;
-  font-weight: 500;
-}
-button:hover {
-  cursor: pointer;
-  opacity: 0.6;
-}
-button:disabled {
-  cursor:not-allowed;
-  background-color: gainsboro;
-  opacity: 0.6;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+header {
+  background-color: var(--background-color);
 }
 details {
   padding: 20px;
