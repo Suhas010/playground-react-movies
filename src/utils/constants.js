@@ -2,7 +2,9 @@ export const ACTIONS = {
   "MOVIES_SUCCESS": "MOVIES_SUCCESS",
   "MOVIES_ERROR": "MOVIES_ERROR",
   "MOVIES_FETCHING": "MOVIES_FETCHING",
-  "FILTER_MOVIES": "FILTER_MOVIES"
+  "FILTER_MOVIES": "FILTER_MOVIES",
+  "UPDATE_YEAR": "UPDATE_YEAR",
+  "TOGGLE_BOOKMARK" : "TOGGLE_BOOKMARK"
 }
 
 export const STATUS = {
@@ -18,9 +20,9 @@ export const COLORS = ["aquamarine", "#fdff7f94", "#ffc67f8f", "#7fe8ff8f", "#a4
 
 // styles
 export const LIGHT = [
-  '--button-color: #ff9f9f',
+  '--background-color: whitesmoke',
 ];
 
 export const DARK = [
-  '--button-color: #9fffdf',
+  '--background-color: white',
 ];

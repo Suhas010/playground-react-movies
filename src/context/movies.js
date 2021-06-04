@@ -10,8 +10,8 @@ const initialMoviesState = {
   year: 2021
 }
 
-const updateData = (arr, {id,checked}) => arr.map((item) => {
-  if(item.id == id) {
+const updateData = (arr, {title,checked}) => arr.map((item) => {
+  if(item.Title === title) {
     item.bookmarked = checked;
   }
   return item;
@@ -41,11 +41,19 @@ function MoviesProvider({ ...props}) {
             status: STATUS.RESOLVED,
             data: action.data.map((item)=> {
               item.color = COLORS[getRandomArbitrary(0, 7)]
+              item.bookmarked = false;
+              item.rating = getRandomArbitrary(0,5)
               return item;
             }),
           }
         }
-        case ACTIONS.MOVIES_TOGGLE: {
+        case ACTIONS.UPDATE_YEAR: {
+          return {
+            ...state,
+            year: action.year
+          }
+        }
+        case ACTIONS.TOGGLE_BOOKMARK: {
           return {
             ...state,
             data : updateData(state.data, action.payload)

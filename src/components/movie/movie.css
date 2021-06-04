@@ -1,0 +1,20 @@
+.movie {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+.title {
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: #495050d1;
+}
+.ratings {
+  margin-right: 30px;
+}
+.year {
+  color: #6f6868d9;
+}
