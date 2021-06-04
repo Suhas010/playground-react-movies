@@ -11,12 +11,21 @@ const initialMoviesState = {
   year: 2021
 }
 
-const updateData = (arr, {title,checked}) => arr.map((item) => {
-  if(item.Title === title) {
-    item.bookmarked = checked;
-  }
-  return item;
-})
+const updateData = ({data, bookmarked}, {title,checked}) => {
+  let copyOfBookmarked = [...bookmarked];
+  let resu = data.map((item, i) => {
+    if(item.Title === title) {
+      item.bookmarked = checked;
+      if(checked) {
+        copyOfBookmarked.push(item);
+      } else {
+        copyOfBookmarked.splice(copyOfBookmarked.findIndex(({Title}) => Title === title),1)
+      }
+    }
+    return item;
+  })
+  return {data: resu, bookmarked: copyOfBookmarked};
+}
 
 function MoviesProvider({ ...props}) {
   const [state, dispatch] = React.useReducer(
@@ -43,6 +52,9 @@ function MoviesProvider({ ...props}) {
             data: action.data.map((item)=> {
               item.color = COLORS[getRandomArbitrary(0, 7)]
               item.bookmarked = false;
+              if(state.bookmarked.findIndex(({Title}) => Title === item.Title)>-1){
+                item.bookmarked = true;
+              }
               item.rating = getRandomArbitrary(0,5)
               return item;
             }),
@@ -55,18 +67,12 @@ function MoviesProvider({ ...props}) {
           }
         }
         case ACTIONS.TOGGLE_BOOKMARK: {
-          let data = updateData(state.data, action.payload)
+          let {data, bookmarked} = updateData(state, action.payload);
+          console.log(bookmarked,"Bookmarked")
           return {
             ...state,
-            data,
-            bookmarked: [...state.bookmarked, ...data.filter(({bookmarked}) => bookmarked === true)]
-          }
-        }
-
-        case ACTIONS.CLEAR_BOOKMARKED_MOVIES: {
-          return {
-            ...state,
-            data: state.data.map((item) => {item.bookmarked = false; return item})
+            data: data,
+            bookmarked: bookmarked
           }
         }
       }
