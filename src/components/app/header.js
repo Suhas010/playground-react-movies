@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <header className="app-header">
-      <h1>Digi Mall - v2</h1>
+      <h1>Movies bookmark</h1>
       {dark && (
         <Image
           onClick={toggle}
