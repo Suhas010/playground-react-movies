@@ -11,9 +11,12 @@
   border: 1px solid #eee;
   overflow: hidden;
   overflow-y: scroll;
-  min-height: 400px;
-  height: 500px;
+  min-height: 500px;
+  height: 600px;
   box-shadow: inset 0px 1px 13px 4px #eee;
+}
+.bookmarked, h2 {
+  text-align: center;
 }
 form {
   border-bottom: 1px solid #eee;

@@ -5,12 +5,11 @@ import { useMovies } from "../../context/movies";
 const Bookmarked = () => {
   const [state,] = useMovies();
   const { data } = state;
-  const bookmarked = data.filter(({bookmarked}) => bookmarked == true)
+  const bookmarked = data.filter(({bookmarked}) => bookmarked === true);
   const isEmpty = !bookmarked || !bookmarked.length;
   return (
     <div className="bookmark-list">
       <h2>Bookmark List</h2>
-      <hr/>
       <div className="bookmarked">
         {isEmpty && (
           <Info
@@ -20,7 +19,7 @@ const Bookmarked = () => {
           />
         )}
         {bookmarked.map(({Year, Title, rating, color}) => (
-          <div className="movie" style={{backgroundColor: color}}>
+          <div className="movie" style={{backgroundColor: color}} key={Title}>
             <MovieDetails 
               title={Title}
               year={Year}
@@ -30,7 +29,7 @@ const Bookmarked = () => {
         ))}
       </div>  
     </div>
-  )
+  );
 }
 
 export default Bookmarked;

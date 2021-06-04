@@ -1,4 +1,4 @@
-import { Rate, Switch } from "antd";
+import { Switch } from "antd";
 import Info from "../../common/Info";
 import Loading from "../../common/Loading";
 import MovieDetails from "../../common/MovieDetails";
@@ -7,7 +7,7 @@ import { ACTIONS, STATUS } from "../../utils/constants";
 import './movie.css';
 
 const Movie = ({data : { Title, Year, color, bookmarked, rating}}) => {
-  const [state, dispatch] = useMovies()
+  const [, dispatch] = useMovies()
   const handleChange = (checked) => {
     dispatch({type: ACTIONS.TOGGLE_BOOKMARK, payload: {title: Title, checked}})
   }
@@ -31,9 +31,10 @@ const Movie = ({data : { Title, Year, color, bookmarked, rating}}) => {
 const MovieList = ()  => {
   const [state,] = useMovies()
   const {data, status, error, year} = state;
+
   const isLoading = status === STATUS.IDLE || status === STATUS.PENDING;
   const isRejected = status === STATUS.REJECTED;
-  console.log(data, "$$$")
+
   if(isLoading) return <Loading />
   if(isRejected || error) {
     return (
@@ -57,7 +58,7 @@ const MovieList = ()  => {
   return (
     <div className="movie-list-container">
       {data.map((movie) => (
-        <Movie data={movie}/>
+        <Movie data={movie} key={movie.Title} />
       ))}
     </div>
   )
