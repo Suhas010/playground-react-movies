@@ -1,3 +1,38 @@
 .master-container {
   min-height: 30vh;
+  display: flex;
+  justify-content: space-around;
+}
+.movie-container, .bookmark-list {
+  width: 40%;
+}
+.list, .bookmarked {
+  padding: 30px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  overflow-y: scroll;
+  min-height: 400px;
+  height: 500px;
+  box-shadow: inset 0px 1px 13px 4px #eee;
+}
+form {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  text-align: center;
+}
+label {
+  color: #444040;
+  padding: 7px;
+}
+input {
+  padding: 10px;
+  border: 1px solid #eee;
+}
+@media only screen and (max-width: 780px) {
+  .master-container {
+    flex-direction: column;
+  }
+  .list {
+    width: 100%;
+  }
 }

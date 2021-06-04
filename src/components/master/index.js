@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import Info from '../../common/Info';
-import Loading from '../../common/Loading';
 import { useMovies } from '../../context/movies';
 import { ACTIONS, STATUS } from '../../utils/constants';
 import { debounce } from '../../utils/helper';
+import MovieList from '../movie';
+import Bookmarked from '../movie/Bookmarked';
 import './master.css';
 
 
 const Master = () => {
-  const [state, dispach] = useMovies()
+  const [state, dispach] = useMovies();
+  const {status, error, year} = state;
   useEffect(() => {
     const getMovies = async () => {
       dispach({type: ACTIONS.MOVIES_FETCHING})
@@ -25,37 +27,27 @@ const Master = () => {
         dispach({type: ACTIONS.MOVIES_ERROR, error})
       }
     };
-    getMovies();
-  }, [])
+    debounce(getMovies, 1000)();
+  }, [year])
 
-  const handleYearChange = debounce((e) => {
-    console.log(e.target.value)
-  }, 300)
-
-  console.log(state)
-  const { status, error} = state;
-  const isLoading = status === STATUS.IDLE || status === STATUS.PENDING;
-  const isRejected = status === STATUS.REJECTED;
-  if(isLoading) return <Loading />;
-  if(isRejected || error) {
-    return (
-      <Info
-        title="Error"
-        type="error"
-        message="Something went wrong, Please try again later."
-      />
-    )
+  const handleYearChange = ({target: {value}}) => {
+    dispach({type: ACTIONS.UPDATE_YEAR, year: value})
   }
-  
+
+
   return (
     <main>
       <div className="master-container">
-        <header>
-        <form>
-        <label htmlFor="year">Enter year</label>
-          <input type="text" id="year" onChange={handleYearChange} />
-        </form>
-        </header>
+        <div className="movie-container">
+          <form>
+            <label htmlFor="year">Enter year</label>
+              <input type="text" id="year" value={year} onChange={handleYearChange} />
+          </form>
+          <div  className="list">
+            <MovieList />
+          </div>
+        </div>
+          <Bookmarked />
       </div>
     </main>
   );
